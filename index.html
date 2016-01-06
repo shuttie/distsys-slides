@@ -47,7 +47,7 @@
 				</section>
 
 				<section>
-					<h2>Проблема роста</h2>
+					<h2>Интро</h2>
 					<p>
 					<ul>
 						<li class="fragment">серверное приложение</li>
@@ -91,6 +91,41 @@
 							<li class="fragment">как с этим жить</li>
 						</ul>
 					</p>
+				</section>
+				<section>
+					<h2>Пример из жизни</h2>
+					<p>
+						Веб-скрейпер, с общей очередью задач.
+					</p>
+					<ul>
+						<li class="fragment">взять из очереди</li>
+						<li class="fragment">проверить, есть ли обьект в очереди</li>
+						<li class="fragment">положить в очередь</li>
+					</ul>
+					<p class="fragment">
+						Очередь целиком не помещается в RAM.
+						<img height="250px" src="images/long_queue.jpg"/>
+					</p>
+
+				</section>
+				<section>
+					<h2>Пример: шардинг</h2>
+					<p>Разбить всю очередь по хешу на блоки</p>
+					<ul>
+						<li class="fragment">Каждый сервер работает в рамках своего блока</li>
+						<li class="fragment">взять из очереди = ок</li>
+						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">???</span></li>
+						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">???</span></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Problems, officer?</h2>
+					<p class="fragment">Больше компонентов = меньше надежность системы</p>
+					<p class="fragment">Что-то обязательно поломается: <span class="fragment">софт,</span> <span class="fragment">железо,</span> <span class="fragment">сеть.</span></p>
+					<p class="fragment">
+					  <img height="330px" src="images/ms_net_failures.png"/>
+						<small><a href="http://research.microsoft.com/en-us/um/people/navendu/papers/sigcomm11netwiser.pdf">[1]: P.Gill, Understanding network failures in data centers: measures, analysis and implications</a></small>
+				  </p>
 				</section>
 			</div>
 
