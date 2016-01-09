@@ -41,7 +41,7 @@
 					<h1>Страх <br/>и<br/> ненависть</h1>
 					<h3>в распределенных системах</h3>
 					<p>
-						<small>Гребенников Роман / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
+						<small>Гребенников Роман / DSR / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
 					</p>
 					<p><small>&copy; jpoint 2016</small></p>
 				</section>
@@ -124,10 +124,44 @@
 					<p class="fragment">Больше компонентов = меньше надежность системы</p>
 					<p class="fragment">Что-то обязательно поломается: <span class="fragment">софт,</span> <span class="fragment">железо,</span> <span class="fragment">сеть.</span></p>
 					<p class="fragment">
-					  <img height="330px" src="images/ms_net_failures.png"/>
+					  <img height="300px" src="images/ms_net_failures.png"/>
 						<small><a href="http://research.microsoft.com/en-us/um/people/navendu/papers/sigcomm11netwiser.pdf">[1]: P.Gill, Understanding network failures in data centers: measures, analysis and implications</a></small>
+						<small><a href="https://aphyr.com/posts/288-the-network-is-reliable">[2]: K.Kingsbury: The network is reliable, 2013</a></small>
 				  </p>
 				</section>
+				<section>
+					<h2>Распределенность</h2>
+					<p class="fragment">Взаимодействие по сети: <span class="fragment">нарушение связанности</span></p>
+					<p class="fragment">
+						NETSPLIT<br/>
+					  <img height="400px" src="images/netsplit.svg"/>
+					</p>
+				</section>
+				<section>
+					<h2>Netsplit и шардинг</h2>
+					<ul>
+						<li class="fragment">взять из очереди = ок</li>
+						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">fail</span></li>
+						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">fail</span></li>
+					</ul>
+					<p class="fragment">Не заложили отказы в дизайн системы</p>
+					<img class="fragment" src="images/depression.jpg" height="300px"/>
+				</section>
+				<section>
+					<h2>CAP-theorem</h2>
+					<img height="500px" src="images/cap_theorem.png"/>
+				</section>
+				<section>
+					<h2>Partition tolerance</h2>
+				</section>
+				<section>
+					<h2>Доступность</h2>
+				</section>
+				<section>
+					<h2>Целостность</h2>
+					<p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p>
+				</section>
+				<section><h2>live</h2></section>
 			</div>
 
 		</div>
