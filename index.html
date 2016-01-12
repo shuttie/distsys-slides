@@ -149,13 +149,21 @@
 				</section>
 				<section>
 					<h2>CAP-theorem</h2>
-					<img height="500px" src="images/cap_theorem.png"/>
+					<img height="400px" src="images/cap_theorem.png"/>
+					<p class="fragment">Три стула: выбирай любые два<span class="fragment">*</span></p>
 				</section>
 				<section>
-					<h2>Partition tolerance</h2>
+					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
+					<img class="fragment" height="200px" src="images/split_fail.png" style="border: 0; box-shadow: none"/>
+					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
+					<ul>
+						<li class="fragment">Половинка с мастером живет, другая лежит</li>
+						<li class="fragment">Большая половинка живет, меньшая лежит</li>
+						<li class="fragment"><span class="fragment highlight-red">Работают обе половинки</span></li>
+					</ul>
 				</section>
 				<section>
-					<h2>Доступность</h2>
+					<h2>C<span class="fragment highlight-red">A</span>P: Availability</h2>
 				</section>
 				<section>
 					<h2>Целостность</h2>
