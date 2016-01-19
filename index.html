@@ -111,7 +111,7 @@
 				<section>
 					<h2>Пример: шардинг</h2>
 					<p>Разбить всю очередь на блоки</p>
-					<img src="images/sharding.png"/>
+					<img class="plain" height="170px" src="images/sharding.svg" style=""/>
 					<ul>
 						<li class="fragment">Каждый сервер работает в рамках своего блока</li>
 						<li class="fragment">взять из очереди = ок</li>
@@ -151,23 +151,35 @@
 					<h2>CAP-theorem</h2>
 					<img height="400px" src="images/cap_theorem.png"/>
 					<p class="fragment">Три стула: выбирай любые два<span class="fragment">*</span></p>
-				</section>
-				<section>
-					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
-					<img class="fragment" height="200px" src="images/split_fail.png" style="border: 0; box-shadow: none"/>
-					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
-					<ul>
-						<li class="fragment">Половинка с мастером живет, другая лежит</li>
-						<li class="fragment">Большая половинка живет, меньшая лежит</li>
-						<li class="fragment"><span class="fragment highlight-red">Работают обе половинки</span></li>
-					</ul>
+					<p class="fragment"><small>[1]: CAP Theorem: http://dl.acm.org/citation.cfm?id=564601</small></p>
 				</section>
 				<section>
 					<h2>C<span class="fragment highlight-red">A</span>P: Availability</h2>
+					<ol class="fragment">
+						Постоянная доступность:
+						<li class="fragment">Каждый запрос к системе</li>
+						<li class="fragment">К любому живому узлу</li>
+						<li class="fragment">Должен быть успешно обработан</li>
+					</ol>
+					<br/><br/>
+					<ul>
+						<li class="fragment">Часть запросов выбрасывается <span class="fragment" style="color: red;">☹</span></li>
+						<li class="fragment">Не все живые узлы отвечают на запросы <span class="fragment" style="color: red;">☹</span></li>
+						<li class="fragment">500 internal server error <span class="fragment" style="color: red;">☹</span></li>
+					</ul>
 				</section>
 				<section>
 					<h2>Целостность</h2>
 					<p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p>
+				</section>
+				<section>
+					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
+					<img class="fragment plain" height="280px" src="images/split_fail.svg"/>
+					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
+					<ul>
+						<li class="fragment">Большая половинка живет, меньшая лежит</li>
+						<li class="fragment"><span class="fragment highlight-red">Работают обе половинки</span></li>
+					</ul>
 				</section>
 				<section><h2>live</h2></section>
 			</div>
