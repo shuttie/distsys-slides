@@ -41,16 +41,19 @@
 					<h1>Страх <br/>и<br/> ненависть</h1>
 					<h3>в распределенных системах</h3>
 					<p>
-						<small>Гребенников Роман / DSR / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
+						<small>Гребенников Роман / Findify.io / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
 					</p>
 					<p><small>&copy; jpoint 2016</small></p>
 				</section>
-
 				<section>
-					<h2>Интро</h2>
+					<h2>Intro</h2>
+					<img src="images/two_hard_problems.png" class="plain"/>
+				</section>
+				<section>
+					<h2>Intro</h2>
 					<p>
 					<ul>
-						<li class="fragment">серверное приложение</li>
+						<li class="fragment"><span style="color: grey;">(серверное)</span> приложение</li>
 						<li class="fragment">внутреннее состояние</li>
 						<li class="fragment">перестало помещаться в один сервер?</li>
 					</ul>
@@ -148,10 +151,18 @@
 					<img class="fragment" src="images/depression.jpg" height="300px"/>
 				</section>
 				<section>
-					<h2>CAP-theorem</h2>
-					<img height="400px" src="images/cap_theorem.png"/>
+					<h2>CAP-теорема</h2>
+					<img class="fragment" height="400px" src="images/cap_theorem.png"/>
 					<p class="fragment">Три стула: выбирай любые два<span class="fragment">*</span></p>
-					<p class="fragment"><small>[1]: CAP Theorem: http://dl.acm.org/citation.cfm?id=564601</small></p>
+					<p><small>[1]: <a href="http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed">E.Brewer, CAP twelve years later: How the "rules" have changed.</a></small></p>
+					<aside class="notes">
+						"система с общим состоянием может иметь только два из трех следующих свойств:
+						целостность данных, постоянная доступность и устойчивость к сетевым сбоям".
+						Теорема озвучена ериком бревером еще в 2000,
+						формально описана и неформально доказана пару лет позже.
+						Но есть несколько тонкостей с её применением.
+					</aside>
+
 				</section>
 				<section>
 					<h2>C<span class="fragment highlight-red">A</span>P: Availability</h2>
@@ -163,25 +174,140 @@
 					</ol>
 					<br/><br/>
 					<ul>
-						<li class="fragment">Часть запросов выбрасывается <span class="fragment" style="color: red;">☹</span></li>
+						<li class="fragment">Часть запросов откладывается на потом <span class="fragment" style="color: red;">☹</span></li>
 						<li class="fragment">Не все живые узлы отвечают на запросы <span class="fragment" style="color: red;">☹</span></li>
 						<li class="fragment">500 internal server error <span class="fragment" style="color: red;">☹</span></li>
 					</ul>
+					<aside class="notes">
+						нетсплит может длиться вечно, откладывать запросы нельзя
+					</aside>
 				</section>
 				<section>
 					<h2>Целостность</h2>
 					<p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p>
+					<ol>
+						<li class="fragment">Для всей последовательности операций</li>
+						<li class="fragment">должен существовать хотя бы один их порядок</li>
+						<li class="fragment">где каждая операция мгновенна</li>
+					</ol>
+					<aside class="notes">
+						операция не размазана во времени
+					</aside>
+				</section>
+				<section>
+					<h2>Линеаризуемость</h2>
+					<p>Регистр, один читатель-писатель:</p>
+					<img height="120px" src="images/consistency_single.svg" class="plain"/>
+					<p>Несколько читателей и писателей:</p>
+					<img height="200px" src="images/consistency_multi.svg" class="plain"/>
+				</section>
+				<section>
+					<h2>Линеаризуемость</h2>
+					<p>Реальный мир с сетевыми задержками:</p>
+					<img src="images/consistency_real.svg" class="plain" height="250px"/><br/>
+					<ul>
+						<li>r<sub style="font-size: 15pt">0</sub>=a, w<sub style="font-size: 15pt">1</sub>=b, r<sub style="font-size: 15pt">1</sub>=b</li>
+						<li>r<sub style="font-size: 15pt">0</sub>=a, r<sub style="font-size: 15pt">1</sub>=a, w<sub style="font-size: 15pt">1</sub>=b</li>
+						<li class="fragment highlight-red">r<sub style="font-size: 15pt">0</sub>=a, r<sub style="font-size: 15pt">1</sub>=b, w<sub style="font-size: 15pt">1</sub>=b</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Линеаризуемость для чайников</h2>
+					<ul>
+						<li>Операции могут произойти в любой последовательности</li>
+						<li>Мы точно не знаем в какой</li>
+						<li>∃ !1 непротиворечивая последовательность</li>
+					</ul>
+					<img src="/images/jmm.jpg" height="300px"/><br/>
 				</section>
 				<section>
 					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
-					<img class="fragment plain" height="280px" src="images/split_fail.svg"/>
+					<p>устойчивость к сбоям сети</p>
+					<img class="fragment plain" height="250px" src="images/split_fail.svg"/>
 					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
 					<ul>
 						<li class="fragment">Большая половинка живет, меньшая лежит</li>
-						<li class="fragment"><span class="fragment highlight-red">Работают обе половинки</span></li>
+						<li class="fragment">Работают обе половинки</li>
+					</ul>
+					<aside class="notes">
+
+					</aside>
+				</section>
+				<section>
+					<h2>CP / AP / AC</h2>
+					<p class="fragment">Проблема с АС:<br/>нужен идеальный мир c идеальной сетью</p>
+					<img class="fragment" src="images/rainbow_unicorn.gif" height="400px"/>
+  				<aside class="notes">
+							C+A - легко, когда у вас идеальная сеть в вакууме. С+А на ненадежной сети - невозможно (почему?)
+							т.е. если у вас сеть сделана не из радуги и бабочек, то вы не можете С+А.
+							есть выбор только между CP/AP
+					</aside>
+				</section>
+				<section>
+					<h2>CP / AP / AC</h2>
+					<img class="plain" src="images/cp_vs_ap.svg" height="300px"/>
+					<p class="fragment">В реальном мире можно выбирать CP или AP,<br/> третьего не дано</p>
+				</section>
+				<section>
+					<h2>CP / AP / AC в реальной жизни</h2>
+					<p><img src="images/cap_methods.png" class="plain" height="350px"/></p>
+					<ul>
+						<li>2PC: двухвазный коммит</li>
+						<li>Paxos: голосование с кворумом</li>
+						<li>Gossip: peer-to-peer обмен</li>
 					</ul>
 				</section>
-				<section><h2>live</h2></section>
+				<section  data-background="images/head-boom.gif" data-background-transition="none">
+				</section>
+				<section>
+					<h2>Jepsen: Call me maybe</h2>
+					<img src="images/aphyr.jpg" height="350px"/>
+					<ul>
+						<li>Фреймворк на Clojure для тестирования консистентности</li>
+						<li>Набор готовых тестов для разных систем</li>
+						<li>Серия разгромных статей о найденных проблемах</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Jepsen: чтобы шатать</h2>
+					<p><small>MongoDB, Aerospike, Cassandra, Kafka, MariaDB/Galera, Percona, RabbitMQ,<br/> Redis, Riak, Zookeeper, etcd, Chronos, RethinkDB</small></p>
+					<img height="300px" src="images/jepsen.jpg"/>
+					<ul>
+						<li>Имитация сетевых ошибок</li>
+						<li>Генерация случайных последовательностей операций</li>
+						<li>Оценка истроий применения операций с т.з. целостности</li>
+					</ul>
+					<!--p><small>[1]: <a href="http://jepsen.io">Jepsen, Distributed Systems Safety Analysis</a></small></p-->
+				</section>
+				<section>
+					<h2>Live demo</h2>
+					<p>План:</p>
+					<ul>
+						<li class="fragment">
+							Простая распределенная система, Scala+Akka+Docker
+							<ul style="color: grey;">
+								<li>Master-slave</li>
+								<li>Quorum</li>
+							</ul>
+						</li>
+						<li class="fragment">Шатать её при помощи Jepsen</li>
+						<li class="fragment">Пытаться обьяснить результат</li>
+					</ul>
+				</section>
+				<section data-background="images/bsod1.png" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+				<section data-background="images/bios2.jpg" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+				<section data-background="images/bsod3.jpg" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+				<section>
+				</section>
+				<section>
+					<h2>Cheat sheet</h2>
+					<img src="images/distsys_cheatsheet.jpg"/>
+					<p><small>[1]: <a href="http://book.mixu.net/distsys/single-page.html">M. Takada, Distributed systems for fun and profit.</a></small></p>
+					<!-- http://book.mixu.net/distsys/single-page.html -->
+				</section>
 			</div>
 
 		</div>

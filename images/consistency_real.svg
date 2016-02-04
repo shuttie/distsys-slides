@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="82.353737mm"
+   height="70.837776mm"
+   viewBox="0 0 291.80458 250.99999"
+   id="svg4749"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="consistency_real.svg">
+  <defs
+     id="defs4751" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="138.04515"
+     inkscape:cy="154.07143"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1600"
+     inkscape:window-height="841"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4754">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-236.95485,-435.43363)">
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g3987">
+      <g
+         transform="translate(236,620)"
+         id="g3989">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#333333;stroke-width:3"
+           d="M 2.2620587,0.07507388 145.84699,1.7427597 142.62251,61.900431 0.17556704,61.662374 Z"
+           id="path3991" />
+      </g>
+      <text
+         style="font-weight:bold;font-size:24px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="659"
+         x="309"
+         id="text3993">a</text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g3995">
+      <g
+         transform="translate(379,621)"
+         id="g3997">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#333333;stroke-width:3"
+           d="M 2.2620587,0.07507388 145.84699,1.7427597 142.62251,61.900431 0.17556704,61.662374 Z"
+           id="path3999" />
+      </g>
+      <text
+         style="font-weight:bold;font-size:24px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="660"
+         x="452"
+         id="text4001">b</text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4003">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke-width:1;stroke-opacity:0"
+         rx="4"
+         height="48"
+         width="20"
+         y="527"
+         x="321"
+         id="rect4005" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="548"
+         x="321"
+         id="text4007">
+        <tspan
+           style="font-weight:bold;font-size:24px"
+           x="321"
+           font-weight="bold"
+           font-size="24"
+           dy="14"
+           id="tspan4009">w</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4011">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke-width:1;stroke-opacity:0"
+         rx="4"
+         height="48"
+         width="20"
+         y="728"
+         x="341"
+         id="rect4013" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="749"
+         x="341"
+         id="text4015">
+        <tspan
+           style="font-weight:bold;font-size:24px"
+           x="341"
+           font-weight="bold"
+           font-size="24"
+           dy="14"
+           id="tspan4017">r</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4019">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#333333;stroke-width:2"
+         d="m 331,577 c 1.5,30 46.5,25 50,42"
+         id="path4021"
+         sodipodi:nodetypes="cc" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="597"
+         x="377"
+         id="text4023" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="605"
+         x="346"
+         id="text4025" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="574"
+         x="350"
+         id="text4027" />
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4029">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke-width:1;stroke-opacity:0"
+         rx="4"
+         height="48"
+         width="20"
+         y="525"
+         x="419"
+         id="rect4031" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="546"
+         x="419"
+         id="text4033">
+        <tspan
+           style="font-weight:bold;font-size:24px"
+           x="419"
+           font-weight="bold"
+           font-size="24"
+           dy="17"
+           id="tspan4035">w1</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4037">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#333333;stroke-width:2"
+         d="m 429,575 c 1,34 -41,23.5 -48,44"
+         id="path4039"
+         sodipodi:nodetypes="cc" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="619"
+         x="402"
+         id="text4041" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="597"
+         x="366"
+         id="text4043" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="595"
+         x="429"
+         id="text4045" />
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4047">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke-width:1;stroke-opacity:0"
+         rx="4"
+         height="48"
+         width="20"
+         y="728"
+         x="484"
+         id="rect4049" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="749"
+         x="484"
+         id="text4051">
+        <tspan
+           style="font-weight:bold;font-size:24px"
+           x="484"
+           font-weight="bold"
+           font-size="24"
+           dy="17"
+           id="tspan4053">r1</tspan>
+      </text>
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4055">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#333333;stroke-width:2"
+         d="m 351,726 c 0,-20.5 101,-20.5 101,-41"
+         id="path4057" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="678"
+         x="432"
+         id="text4059" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="705"
+         x="401"
+         id="text4061" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="707"
+         x="357"
+         id="text4063" />
+    </g>
+    <g
+       transform="translate(2.3308714,-89.566367)"
+       id="g4065">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#333333;stroke-width:2"
+         d="m 494,726 c 0,-20.5 -42,-20.5 -42,-41"
+         id="path4067" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="706"
+         x="453"
+         id="text4069" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:start;fill:#333333"
+         y="705"
+         x="473"
+         id="text4071" />
+      <text
+         style="font-size:12px;font-family:arial, helvetica;text-anchor:middle;fill:#333333"
+         y="727"
+         x="473"
+         id="text4073" />
+    </g>
+  </g>
+</svg>

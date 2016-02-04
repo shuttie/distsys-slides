@@ -91,11 +91,13 @@ module.exports = function(grunt) {
 
 		connect: {
 			server: {
+				app: 'firefox',
 				options: {
 					port: port,
 					base: base,
 					livereload: true,
-					open: true
+					open: true,
+					app: 'firefox'
 				}
 			}
 		},
