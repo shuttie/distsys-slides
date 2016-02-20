@@ -41,14 +41,26 @@
 					<h1>Страх <br/>и<br/> ненависть</h1>
 					<h3>в распределенных системах</h3>
 					<p>
-						<small>Гребенников Роман / Findify.io / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
+						<small>Гребенников Роман / <a href="http://findify.io">Findify.io</a> / <a href="http://twitter.com/public_void_grv">@public_void_grv</a></small>
 					</p>
 					<p><small>&copy; jpoint 2016</small></p>
 				</section>
 				<section>
+					<h2>Обо мне</h2>
+					<img src="images/grebennikov.jpg"/>
+					<p>
+					  <small>twitter: <a href="http://twitter.com/public_void_grv">public_void_grv</a></small>
+						<small>email: <a href="mailto:grv@dfdx.me">grv@dfdx.me</a></small>
+				  </p>
+					<p class="fragment">
+					  <img class="plain" height="60px" src="images/sociohub.png"/>
+					  <img class="plain" height="60px" src="images/findify.png"/>
+					</p>
+				</section>
+				<!--section>
 					<h2>Intro</h2>
 					<img src="images/two_hard_problems.png" class="plain"/>
-				</section>
+				</section-->
 				<section>
 					<h2>Intro</h2>
 					<p>
@@ -87,7 +99,7 @@
 							<li class="fragment">
 								как прострелить ногу: практика
 								<ul style="color: grey; font-size: 20pt;">
-									<li>Multimaster key-value DB на 100 строк</li>
+									<li>Распределенная "БД" на 100 строк</li>
 									<li>шатание и ломание</li>
 								</ul>
 							</li>
@@ -117,15 +129,16 @@
 					<img class="plain" height="170px" src="images/sharding.svg" style=""/>
 					<ul>
 						<li class="fragment">Каждый сервер работает в рамках своего блока</li>
-						<li class="fragment">взять из очереди = ок</li>
-						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">тяжеловато</span></li>
-						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">тяжеловато</span></li>
+						<li class="fragment">взять из очереди = ок<span style="color: red;">*</span></li>
+						<li class="fragment">положить в очередь = ок<span style="color: red;">*</span></li>
+						<li class="fragment">проверить, есть ли в очереди = ок<span style="color: red;">*</span></li>
 					</ul>
+					<p class="fragment"><span style="color: red;">*</span> - #тяжеловато</p>
 				</section>
 				<section>
 					<h2>Problems, officer?</h2>
 					<p class="fragment">Больше компонентов = меньше надежность системы</p>
-					<p class="fragment">Что-то обязательно поломается: <span class="fragment">софт,</span> <span class="fragment">железо,</span> <span class="fragment">сеть.</span></p>
+					<p class="fragment">Что-то обязательно поломается: софт, железо, <span class="fragment highlight-red">сеть.</span></p>
 					<p class="fragment">
 					  <img height="300px" src="images/ms_net_failures.png"/>
 						<small><a href="http://research.microsoft.com/en-us/um/people/navendu/papers/sigcomm11netwiser.pdf">[1]: P.Gill, Understanding network failures in data centers: measures, analysis and implications</a></small>
@@ -143,7 +156,7 @@
 				<section>
 					<h2>Netsplit и шардинг</h2>
 					<ul>
-						<li class="fragment">взять из очереди = ок</li>
+						<li class="fragment">взять из очереди = <span class="fragment" style="color: red;">fail</span></li>
 						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">fail</span></li>
 						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">fail</span></li>
 					</ul>
@@ -218,12 +231,15 @@
 						<li>Мы точно не знаем в какой</li>
 						<li>∃ !1 непротиворечивая последовательность</li>
 					</ul>
-					<img src="/images/jmm.jpg" height="300px"/><br/>
+					<img src="images/jmm.jpg" height="300px"/><br/>
 				</section>
 				<section>
 					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
 					<p>устойчивость к сбоям сети</p>
-					<img class="fragment plain" height="250px" src="images/split_fail.svg"/>
+					<p style="height: 300px;">
+					  <img class="fragment plain" height="250px" src="images/split_fail_bg.svg"/>
+					  <img class="fragment plain" height="250px" style="position: relative; top:-300px;"src="images/split_fail_fg.svg"/>
+					</p>
 					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
 					<ul>
 						<li class="fragment">Большая половинка живет, меньшая лежит</li>
@@ -263,7 +279,7 @@
 					<h2>Jepsen: Call me maybe</h2>
 					<img src="images/aphyr.jpg" height="350px"/>
 					<ul>
-						<li>Фреймворк на Clojure для тестирования консистентности</li>
+						<li>Фреймворк на Clojure для тестирования р/с</li>
 						<li>Набор готовых тестов для разных систем</li>
 						<li>Серия разгромных статей о найденных проблемах</li>
 					</ul>
@@ -279,21 +295,6 @@
 					</ul>
 					<!--p><small>[1]: <a href="http://jepsen.io">Jepsen, Distributed Systems Safety Analysis</a></small></p-->
 				</section>
-				<section>
-					<h2>Live demo</h2>
-					<p>План:</p>
-					<ul>
-						<li class="fragment">
-							Простая распределенная система, Scala+Akka+Docker
-							<ul style="color: grey;">
-								<li>Master-slave</li>
-								<li>Quorum</li>
-							</ul>
-						</li>
-						<li class="fragment">Шатать её при помощи Jepsen</li>
-						<li class="fragment">Пытаться обьяснить результат</li>
-					</ul>
-				</section>
 				<section data-background="images/bsod1.png" data-background-transition="none"></section>
 				<section data-background="#000000" data-background-transition="none"></section>
 				<section data-background="images/bios2.jpg" data-background-transition="none"></section>
@@ -301,12 +302,179 @@
 				<section data-background="images/bsod3.jpg" data-background-transition="none"></section>
 				<section data-background="#000000" data-background-transition="none"></section>
 				<section>
+					<h2>Live demo</h2>
+					<p>План:</p>
+					<ul>
+						<li class="fragment">
+							Master-slave распределенная система, Scala+Akka+Docker
+							<ul style="color: grey;">
+								<li>Async replication</li>
+								<li>Sync replication</li>
+							</ul>
+						</li>
+						<li class="fragment">Тестировать её при помощи Jepsen, не шатать</li>
+						<li class="fragment">Пытаться обьяснить результат</li>
+					</ul>
+				</section>
+				<section>
+					<img class="plain" height="400px" src="images/master_slave.png"/>
+				</section>
+				<section>
+					<h2>Master/slave</h2>
+					<img class="plain" height="250px" src="images/master_slave.svg"/>
+					<ol>
+						<li>Клиент отправляет запрос на запись мастеру</li>
+						<li>Мастер пишет на диск</li>
+						<li>Мастер [а]синхронно реплицирует запись слейву</li>
+						<li>Мастер отвечает клиенту об успешной записи</li>
+					</ol>
+					<p><strong>Async/sync replication == CA?</strong></p>
+				</section>
+				<section>
+					<h2>Docker</h2>
+					<p><img src="images/docker_orig.png" height="200px" class="fragment"/> <img src="images/docker.png" height="200px" class="fragment"/></p>
+					<p><ul>
+						<li class="fragment">Система контейнеризации приложений</li>
+						<li class="fragment">Использует Linux cgroups (LXC, OpenVZ)</li>
+						<li class="fragment">Богатая экосистема: Compose, Machine, Swarm, Kubernetes</li>
+					</ul></p>
+				</section>
+				<section>
+					<h2>Jepsen + M/S</h2>
+					<img class="plain" src="images/jepsen_ms.svg" height="350px">
+					<ul>
+						<li>Писать в мастер, читать с мастера/слейва</li>
+						<li>Consistency = ?</li>
+						<li>Availability = ?</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Clojure 101</h2>
+					<img src="images/habr_clojure_tr.png" height="250px"/>
+					<p><ul>
+						<li>(+ 2 2)</li>
+						<li>(defn hello [name] (println "hello, " name "!"))</li>
+					</ul></p>
+				</section>
+				<section>
+					<h2>Jepsen 101</h2>
+					<p><img src="images/jepsen_internal.svg" class="plain" height="600px"/></p>
+				</section>
+			  <section>
+					<h2>Master/Slave Fail</h2>
+					<img class="plain" height="350px" src="images/ms_fail.svg"/>
+					<ul>
+						<li>Мастер говорит ОК когда слейв не консистентен</li>
+						<li>Слейв запаздывает за мастером</li>
+				  </ul>
+			  </section>
+				<section>
+					<h2>Что-то не так</h2>
+					<p class="fragment">
+					  <img src="images/willis_perfect.jpg" height="400px"/>
+						<img src="images/willis_real.jpg" height="400px"/>
+					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
+				  </p>
+				</section>
+				<!--section>
+					<h2>Master/Slave fail #2</h2>
+					<img class="plain" height="300px" src="images/ms_fail_ava.svg"/>
+					<p>В случае нетсплита, слейв:</p>
+					<ul>
+						<li>Или отдает неконсистентные данные</li>
+						<li>Или не обрабатывает запросы</li>
+				  </ul>
+				</section-->
+				<section>
+					<h2>Master/Slave vs CAP</h2>
+					<p>Consistency + Availability?</p>
+					<ul>
+						<li>асинхронная репликация: С = <span style="color: red;">неа</span>, A = <span style="color: green;">да</span></li>
+						<li>синхронная репликация: C = <span style="color: green;">да</span>, A = <span style="color: green;">да</span></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Налайвкодили, а жить-то как?</h2>
+					<img src="images/kolenki.jpg" height="250px"/>
+					<p>Крафтовые распределенные системы:</p>
+					<ul>
+						<li>Содержат кривой-косой алгоритм консенсуса</li>
+						<li>Их никто не тестировал на целостность в бою</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Консенсус</h2>
+					<p>Соглашение об общем состоянии, восстановление от сбоев:</p>
+					<ul>
+						<li><span style="color: green;">Minority fail</span>: OK</li>
+						<li><span style="color: red;">Majority fail</span>: потеря доступности, сохранение целостности</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Raft vs Paxos</h2>
+					<p>TODO: как работают, чем отличаются</p>
+				</section>
+				<section>
+					<h2>Консенсус и реальная жизнь</h2>
+					<p>TODO: в каких системах используется</p>
+				</section>
+				<section>
+					<h2>Консенсус и код</h2>
+					<p>TODO: библиотеки и реализации</p>
+				</section>
+				<section>
+					<h2>Live demo strikes back</h2>
+					<p>План:</p>
+					<ul>
+						<li class="fragment">
+							Распределенная система, Scala+Akka+Docker
+							<ul style="color: grey;">
+								<li>Кворум на коленке</li>
+								<li>Akka-raft</li>
+							</ul>
+						</li>
+						<li class="fragment">Шатать её при помощи Jepsen</li>
+						<li class="fragment">Пытаться обьяснить результат</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Ужасный netsplit</h2>
+					<p>TODO: почему наш кворум развалился</p>
+				</section>
+				<section>
+					<h2>Akka-raft</h2>
+					<p>TODO: описание API, как работать</p>
+				</section>
+				<section>
+					<img src="images/happy_cat.jpg" height="500px"/>
 				</section>
 				<section>
 					<h2>Cheat sheet</h2>
 					<img src="images/distsys_cheatsheet.jpg"/>
 					<p><small>[1]: <a href="http://book.mixu.net/distsys/single-page.html">M. Takada, Distributed systems for fun and profit.</a></small></p>
 					<!-- http://book.mixu.net/distsys/single-page.html -->
+				</section>
+				<section>
+					<h2>Личный опыт</h2>
+					<img height="300px" src="images/bike.jpg"/>
+					<ul>
+						<li>Наигрались в свои велосипеды: master-slave</li>
+						<li>Наигрались в чужие велосипеды: akka-cluster</li>
+						<li>Вынесли весь стейт в наружу</li>
+					</ul>
+					<p>Теперь все иммутабельно и пахнет ёлочками.</p>
+				</section>
+				<section>
+					<h2>Выводы</h2>
+					<img src="images/easy_way.png" height="350px"/>
+					<ul>
+						<li>Прострелить ногу очень просто</li>
+						<li>Прежде чем изобретать велосипед, учите матчасть</li>
+						<li>Почти все проблемы уже решены</li>
+					</ul>
+				</section>
+				<section data-background="images/head-boom.gif" data-background-transition="none">
+					<h1>Вопросы?</h1>
 				</section>
 			</div>
 
