@@ -209,22 +209,26 @@
 				</section>
 				<section>
 					<h2>Линеаризуемость</h2>
-					<p>Регистр, один читатель-писатель:</p>
-					<img height="120px" src="images/consistency_single.svg" class="plain"/>
-					<p>Несколько читателей и писателей:</p>
-					<img height="200px" src="images/consistency_multi.svg" class="plain"/>
+					<p>
+						Регистр, один читатель-писатель:<br/>
+					  <img height="120px" src="images/consistency_single.svg" class="plain"/>
+					</p>
+					<p class="fragment">
+						Несколько читателей и писателей:<br/>
+					  <img height="200px" src="images/consistency_multi.svg" class="plain"/>
+				  </p>
 				</section>
 				<section>
 					<h2>Линеаризуемость</h2>
 					<p>Реальный мир с сетевыми задержками:</p>
 					<img src="images/consistency_real.svg" class="plain" height="250px"/><br/>
 					<ul>
-						<li>r<sub style="font-size: 15pt">0</sub>=a, w<sub style="font-size: 15pt">1</sub>=b, r<sub style="font-size: 15pt">1</sub>=b</li>
-						<li>r<sub style="font-size: 15pt">0</sub>=a, r<sub style="font-size: 15pt">1</sub>=a, w<sub style="font-size: 15pt">1</sub>=b</li>
-						<li class="fragment highlight-red">r<sub style="font-size: 15pt">0</sub>=a, r<sub style="font-size: 15pt">1</sub>=b, w<sub style="font-size: 15pt">1</sub>=b</li>
+						<li>read a, write b, read b</li>
+						<li>read a, read a, write b</li>
+						<li class="fragment highlight-red">read a, read b, write b</li>
 					</ul>
 				</section>
-				<section>
+				<!--section>
 					<h2>Линеаризуемость для чайников</h2>
 					<ul>
 						<li>Операции могут произойти в любой последовательности</li>
@@ -232,7 +236,7 @@
 						<li>∃ !1 непротиворечивая последовательность</li>
 					</ul>
 					<img src="images/jmm.jpg" height="300px"/><br/>
-				</section>
+				</section-->
 				<section>
 					<h2>CA<span class="fragment highlight-red">P</span>: Partition tolerance</h2>
 					<p>устойчивость к сбоям сети</p>
@@ -288,7 +292,7 @@
 					<h2>Jepsen: чтобы шатать</h2>
 					<p><small>MongoDB, Aerospike, Cassandra, Kafka, MariaDB/Galera, Percona, RabbitMQ,<br/> Redis, Riak, Zookeeper, etcd, Chronos, RethinkDB</small></p>
 					<img height="300px" src="images/jepsen.jpg"/>
-					<ul>
+					<ul class="fragment">
 						<li>Имитация сетевых ошибок</li>
 						<li>Генерация случайных последовательностей операций</li>
 						<li>Оценка истроий применения операций с т.з. целостности</li>
@@ -328,8 +332,9 @@
 						<li>Мастер [а]синхронно реплицирует запись слейву</li>
 						<li>Мастер отвечает клиенту об успешной записи</li>
 					</ol>
-					<p><strong>Async/sync replication == CA?</strong></p>
+					<p class="fragment"><strong>Async/sync replication == CA?</strong></p>
 				</section>
+				<section><small>show time</small></section>
 				<section>
 					<h2>Docker</h2>
 					<p><img src="images/docker_orig.png" height="200px" class="fragment"/> <img src="images/docker.png" height="200px" class="fragment"/></p>
@@ -339,6 +344,7 @@
 						<li class="fragment">Богатая экосистема: Compose, Machine, Swarm, Kubernetes</li>
 					</ul></p>
 				</section>
+				<section><small>show time</small></section>
 				<section>
 					<h2>Jepsen + M/S</h2>
 					<img class="plain" src="images/jepsen_ms.svg" height="350px">
@@ -349,16 +355,34 @@
 					</ul>
 				</section>
 				<section>
-					<h2>Clojure 101</h2>
-					<img src="images/habr_clojure_tr.png" height="250px"/>
-					<p><ul>
-						<li>(+ 2 2)</li>
-						<li>(defn hello [name] (println "hello, " name "!"))</li>
-					</ul></p>
-				</section>
-				<section>
 					<h2>Jepsen 101</h2>
 					<p><img src="images/jepsen_internal.svg" class="plain" height="600px"/></p>
+				</section>
+				<section>
+					<h2>Clojure 101</h2>
+					<img src="images/habr_clojure_tr.png" height="250px"/>
+					<pre class="fragment"><code data-trim data-noescape>
+user=> (+ 1 2)
+3
+user=> (defn hello [name] (println "hello," name))
+#'user/hello
+user=> (hello "jpoint")
+hello, jpoint
+nil
+user=>
+					</code></pre>
+				</section>
+				<section>
+					<img src="images/draw_owl.jpg" height="600px"/>
+				</section>
+				<section><small>show time</small></section>
+				<section>
+					<h2>Что-то не так</h2>
+					<p class="fragment">
+					  <img src="images/willis_perfect.jpg" height="400px"/>
+						<img src="images/willis_real.jpg" height="400px"/>
+					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
+				  </p>
 				</section>
 			  <section>
 					<h2>Master/Slave Fail</h2>
@@ -368,14 +392,6 @@
 						<li>Слейв запаздывает за мастером</li>
 				  </ul>
 			  </section>
-				<section>
-					<h2>Что-то не так</h2>
-					<p class="fragment">
-					  <img src="images/willis_perfect.jpg" height="400px"/>
-						<img src="images/willis_real.jpg" height="400px"/>
-					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
-				  </p>
-				</section>
 				<!--section>
 					<h2>Master/Slave fail #2</h2>
 					<img class="plain" height="300px" src="images/ms_fail_ava.svg"/>
@@ -385,6 +401,7 @@
 						<li>Или не обрабатывает запросы</li>
 				  </ul>
 				</section-->
+				<section><small>show time</small></section>
 				<section>
 					<h2>Master/Slave vs CAP</h2>
 					<p>Consistency + Availability?</p>
@@ -405,7 +422,8 @@
 				<section>
 					<h2>Консенсус</h2>
 					<p>Соглашение об общем состоянии, восстановление от сбоев:</p>
-					<ul>
+					<img src="images/quorum.svg" height="300px" class="plain fragment"/>
+					<ul class="fragment">
 						<li><span style="color: green;">Minority fail</span>: OK</li>
 						<li><span style="color: red;">Majority fail</span>: потеря доступности, сохранение целостности</li>
 					</ul>
