@@ -54,6 +54,7 @@
 				  </p>
 					<p class="fragment">
 					  <img class="plain" height="60px" src="images/sociohub.png"/>
+						<img class="plain" height="60px" src="images/dsr.png"/>
 					  <img class="plain" height="60px" src="images/findify.png"/>
 					</p>
 				</section>
@@ -158,7 +159,7 @@
 					<ul>
 						<li class="fragment">взять из очереди = <span class="fragment" style="color: red;">fail</span></li>
 						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">fail</span></li>
-						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">fail</span></li>
+						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">data loss</span></li>
 					</ul>
 					<p class="fragment">Не заложили отказы в дизайн системы</p>
 					<img class="fragment" src="images/depression.jpg" height="300px"/>
@@ -198,11 +199,12 @@
 				<section>
 					<h2>Целостность</h2>
 					<p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p>
-					<ol>
-						<li class="fragment">Для всей последовательности операций</li>
-						<li class="fragment">должен существовать хотя бы один их порядок</li>
-						<li class="fragment">где каждая операция мгновенна</li>
-					</ol>
+					<ul>
+						<li class="fragment">Если операция B началась после окончания операции А</li>
+						<li class="fragment">тогда В должна увидеть систему на момент окончания А</li>
+						<li class="fragment">или в более новом состоянии.</li>
+					</ul>
+					<p class="fragment">Существует непротиворечивая история последовательных операций.</p>
 					<aside class="notes">
 						операция не размазана во времени
 					</aside>
@@ -221,7 +223,7 @@
 				<section>
 					<h2>Линеаризуемость</h2>
 					<p>Реальный мир с сетевыми задержками:</p>
-					<img src="images/consistency_real.svg" class="plain" height="250px"/><br/>
+					<img src="images/consistency_real.svg" class="plain" height="300px"/><br/>
 					<ul>
 						<li>read a, write b, read b</li>
 						<li>read a, read a, write b</li>
@@ -340,7 +342,7 @@
 					<p><img src="images/docker_orig.png" height="200px" class="fragment"/> <img src="images/docker.png" height="200px" class="fragment"/></p>
 					<p><ul>
 						<li class="fragment">Система контейнеризации приложений</li>
-						<li class="fragment">Использует Linux cgroups (LXC, OpenVZ)</li>
+						<li class="fragment">Использует Linux cgroups и namespaces (LXC, OpenVZ)</li>
 						<li class="fragment">Богатая экосистема: Compose, Machine, Swarm, Kubernetes</li>
 					</ul></p>
 				</section>
@@ -376,14 +378,6 @@ user=>
 					<img src="images/draw_owl.jpg" height="600px"/>
 				</section>
 				<section><small>show time</small></section>
-				<section>
-					<h2>Что-то не так</h2>
-					<p class="fragment">
-					  <img src="images/willis_perfect.jpg" height="400px"/>
-						<img src="images/willis_real.jpg" height="400px"/>
-					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
-				  </p>
-				</section>
 			  <section>
 					<h2>Master/Slave Fail</h2>
 					<img class="plain" height="350px" src="images/ms_fail.svg"/>
@@ -403,16 +397,39 @@ user=>
 				</section-->
 				<section><small>show time</small></section>
 				<section>
+					<h2>Что-то не так</h2>
+					<p class="fragment">
+					  <img src="images/willis_perfect.jpg" height="400px"/>
+						<img src="images/willis_real.jpg" height="400px"/>
+					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
+				  </p>
+				</section>
+				<section>
+					<h2>Master/slave fail #2</h2>
+					<img src="images/ms_fail_split.svg" class="fragment plain" height="550px"/>
+				</section>
+				<section>
 					<h2>Master/Slave vs CAP</h2>
 					<p>Consistency + Availability?</p>
 					<ul>
-						<li>асинхронная репликация: С = <span style="color: red;">неа</span>, A = <span style="color: green;">да</span></li>
-						<li>синхронная репликация: C = <span style="color: green;">да</span>, A = <span style="color: green;">да</span></li>
+						<li>асинхронная репликация: С = <span style="color: red;">неа</span>, A = <span style="color: green;">хз</span></li>
+						<li>синхронная репликация: C = <span style="color: green;">да</span><span style="color: yellow;">*</span>, A = <span style="color: green;">хз</span></li>
 					</ul>
 				</section>
 				<section>
+					<h2>Don't call me CAP</h2>
+					<p>Теорема с очень строгими определениями:</p>
+					<ul>
+						<li class="fragment">consistency: а что с транзакциями?</li>
+						<li class="fragment">availability: latency? дохлые диски? reboot?</li>
+						<li class="fragment">partitions: потеря пакетов?</li>
+					</ul>
+					<br/><br/><br/><br/><br/><br/>
+					<p class="fragment"><small>[1]: <a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html">M.Kleppmann: Please stop calling databases CP or AP</a></small></p>
+				</section>
+				<section>
 					<h2>Налайвкодили, а жить-то как?</h2>
-					<img src="images/kolenki.jpg" height="250px"/>
+					<img src="images/kostyli.gif" height="300px"/>
 					<p>Крафтовые распределенные системы:</p>
 					<ul>
 						<li>Содержат кривой-косой алгоритм консенсуса</li>
@@ -429,39 +446,82 @@ user=>
 					</ul>
 				</section>
 				<section>
-					<h2>Raft vs Paxos</h2>
-					<p>TODO: как работают, чем отличаются</p>
+					<h2>Paxos</h2>
+					Распределенный конечный автомат с характером:
+					<ul class="fragment">
+						<li>Сложный для понимания</li>
+						<li>Сложный для практической реализации</li>
+					</ul>
+					<p><img src="images/wow.gif" height="250px" class="fragment"/></p>
+					<p class="fragment"><small>[1]: <a href="http://blog.aetherstore.com/2013/05/paxos-by-example/">A.Macdonald: Paxos by example</a></small></p>
+				</section>
+				<section>
+					<h2>Raft</h2>
+					<img src="images/raft.png" height="200px"/>
+					<ul>
+						<li class="fragment">Распределенный конечный автомат</li>
+						<li class="fragment">
+							Журнал операций
+							<ul>
+								<li class="fragment">соглашение о порядке операций в журнале</li>
+								<li class="fragment">КА приходит в одинаковое состояние</li>
+							</ul>
+						</li>
+					</ul>
+					<br/><br/><p class="fragment"><small>[1]: <a href="https://raft.github.io/">D.Ongaro: The Raft consensus algorithm</a></small></p>
+				</section>
+				<section>
+					<img src="images/raft_impls.png" height="650px"/>
 				</section>
 				<section>
 					<h2>Консенсус и реальная жизнь</h2>
-					<p>TODO: в каких системах используется</p>
-				</section>
-				<section>
-					<h2>Консенсус и код</h2>
-					<p>TODO: библиотеки и реализации</p>
+					<img src="images/mongodb.svg" width="300px" class="plain"/>
+					<img src="images/cassandra.png" width="300px" class="plain"/>
+					<img src="images/ceph.png" width="300px" class="plain"/>
+					<img src="images/neo4j.png" width="300px" class="plain"/>
+					<img src="images/consul.png" width="300px" class="plain"/>
+					<img src="images/etcd.png" width="300px" class="plain"/>
+					<img src="images/zookeeper.png" width="300px" class="plain"/>
+					<img src="images/aerospike.png" width="300px" class="plain"/>
 				</section>
 				<section>
 					<h2>Live demo strikes back</h2>
-					<p>План:</p>
+					<img src="images/kolenki.jpg"/>
 					<ul>
 						<li class="fragment">
 							Распределенная система, Scala+Akka+Docker
 							<ul style="color: grey;">
 								<li>Кворум на коленке</li>
-								<li>Akka-raft</li>
 							</ul>
 						</li>
 						<li class="fragment">Шатать её при помощи Jepsen</li>
 						<li class="fragment">Пытаться обьяснить результат</li>
 					</ul>
 				</section>
+				<section><small>show time</small></section>
 				<section>
-					<h2>Ужасный netsplit</h2>
-					<p>TODO: почему наш кворум развалился</p>
+					<h2>Кворум на коленке развалился</h2>
+					<p><img src="images/sad_boy.gif"/></p>
+					<ol>
+						<li class="fragment">Неправильно пишем</li>
+						<li class="fragment">Неправильно читаем</li>
+						<li class="fragment">Неправильно пишем и читаем</li>
+						<li class="fragment">Пишем на неправильном языке</li>
+					</ol>
 				</section>
 				<section>
-					<h2>Akka-raft</h2>
-					<p>TODO: описание API, как работать</p>
+					<pre><code data-trim data-noescape>
+def read =
+  Future.sequence(nodes.map(node => httpRead(node)))
+    .flatMap(handleQuorum)
+    .map(buildResponse)
+
+def write(data: String) = {
+  Future.sequence(nodes.map(node => httpWrite(node, data)))
+    .flatMap(handleQuorum)
+    .map(buildResponse)
+}
+				</code></pre>
 				</section>
 				<section>
 					<img src="images/happy_cat.jpg" height="500px"/>
@@ -476,19 +536,19 @@ user=>
 					<h2>Личный опыт</h2>
 					<img height="300px" src="images/bike.jpg"/>
 					<ul>
-						<li>Наигрались в свои велосипеды: master-slave</li>
-						<li>Наигрались в чужие велосипеды: akka-cluster</li>
-						<li>Вынесли весь стейт в наружу</li>
+						<li class="fragment">Наигрались в свои велосипеды: master-slave</li>
+						<li class="fragment">Наигрались в чужие велосипеды: akka-cluster</li>
+						<li class="fragment">Вынесли весь стейт в наружу</li>
 					</ul>
-					<p>Теперь все иммутабельно и пахнет ёлочками.</p>
+					<p class="fragment">Теперь все иммутабельно и пахнет ёлочками.</p>
 				</section>
 				<section>
 					<h2>Выводы</h2>
 					<img src="images/easy_way.png" height="350px"/>
 					<ul>
-						<li>Прострелить ногу очень просто</li>
-						<li>Прежде чем изобретать велосипед, учите матчасть</li>
-						<li>Почти все проблемы уже решены</li>
+						<li class="fragment">Прострелить ногу <span class="fragment highlight-red"очень</span> просто</li>
+						<li class="fragment">Прежде чем изобретать велосипед, учите матчасть</li>
+						<li class="fragment">Почти все проблемы уже решены</li>
 					</ul>
 				</section>
 				<section data-background="images/head-boom.gif" data-background-transition="none">
