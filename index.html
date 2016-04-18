@@ -18,13 +18,13 @@
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
-		<script>
+		<!--script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script-->
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -52,16 +52,18 @@
 					  <small>twitter: <a href="http://twitter.com/public_void_grv">public_void_grv</a></small>
 						<small>email: <a href="mailto:grv@dfdx.me">grv@dfdx.me</a></small>
 				  </p>
-					<p class="fragment">
+					<p>
 					  <img class="plain" height="60px" src="images/sociohub.png"/>
-						<img class="plain" height="60px" src="images/dsr.png"/>
+						<!--img class="plain" height="60px" src="images/dsr.png"/-->
 					  <img class="plain" height="60px" src="images/findify.png"/>
 					</p>
 				</section>
-				<!--section>
+				<section>
 					<h2>Intro</h2>
-					<img src="images/two_hard_problems.png" class="plain"/>
-				</section-->
+					<img src="images/lamport.jpg" class="plain"/>
+					<blockquote>A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable.</blockquote>
+					<p><small>Leslie Lamport, 1987</small></p>
+				</section>
 				<section>
 					<h2>Intro</h2>
 					<p>
@@ -109,6 +111,36 @@
 					</p>
 				</section>
 				<section>
+					<h2>Они повсюду</h2>
+					<p>Серверы:</p>
+					<ul>
+						<li>Железные или в облаке</li>
+						<li>Общаются по быстрой локальной сети</li>
+						<li>Или через океан</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Они повсюду</h2>
+					<p>Клиенты:</p>
+					<ul>
+						<li>Мобильные приложения или браузеры</li>
+						<li>Общаются через отвратительный 3G</li>
+						<li>Или через голубиную почту</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Они обобщенно повсюду</h2>
+					<p>Распределенная система<small>[1]</small>:</p>
+					<p><ul>
+						<li>состоит из нескольких частей,</li>
+						<li>части общаются друг с другом,</li>
+						<li>медленно и с ошибками</li>
+					</ul></p>
+					<br/>
+					<small><a href="https://github.com/aphyr/distsys-class">[1]: Aphyr / K.Kingsbury: Distributed systems lecture series, 2016</a></small>
+				</section>
+
+				<section>
 					<h2>Пример из жизни</h2>
 					<p>
 						Веб-скрейпер, с общей очередью задач.
@@ -141,18 +173,15 @@
 					<p class="fragment">Больше компонентов = меньше надежность системы</p>
 					<p class="fragment">Что-то обязательно поломается: софт, железо, <span class="fragment highlight-red">сеть.</span></p>
 					<p class="fragment">
-					  <img height="300px" src="images/ms_net_failures.png"/>
+					  <img height="300px" src="images/ms_net_failures.png"/><small>[1][2]</small>
 						<small><a href="http://research.microsoft.com/en-us/um/people/navendu/papers/sigcomm11netwiser.pdf">[1]: P.Gill, Understanding network failures in data centers: measures, analysis and implications</a></small>
 						<small><a href="https://aphyr.com/posts/288-the-network-is-reliable">[2]: Aphyr / K.Kingsbury: The network is reliable, 2013</a></small>
 				  </p>
 				</section>
 				<section>
-					<h2>Распределенность</h2>
-					<p class="fragment">Взаимодействие по сети: <span class="fragment">нарушение связанности</span></p>
-					<p class="fragment">
-						NETSPLIT<br/>
-					  <img height="400px" src="images/netsplit.svg"/>
-					</p>
+					<h2>Netsplit</h2>
+					<!--p class="fragment">Взаимодействие по сети: <span class="fragment">нарушение связанности</span></p-->
+				  <img height="450px" src="images/netsplit.svg"/>
 				</section>
 				<section>
 					<h2>Netsplit и шардинг</h2>
@@ -161,12 +190,17 @@
 						<li class="fragment">проверить, есть ли в очереди = <span class="fragment" style="color: red;">fail</span></li>
 						<li class="fragment">положить в очередь = <span class="fragment" style="color: red;">data loss</span></li>
 					</ul>
-					<p class="fragment">Не заложили отказы в дизайн системы</p>
-					<img class="fragment" src="images/depression.jpg" height="300px"/>
+					<p class="fragment">
+						Не заложили отказы в дизайн системы
+						<img src="images/depression.jpg" height="300px"/>
+					</p>
+
 				</section>
 				<section>
 					<h2>CAP-теорема</h2>
-					<img class="fragment" height="400px" src="images/cap_theorem.png"/>
+					<p class="fragment">
+						<img height="400px" src="images/cap_theorem.png"/><small>[1]</small>
+					</p>
 					<p class="fragment">Три стула: выбирай любые два<span class="fragment">*</span></p>
 					<p><small>[1]: <a href="http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed">E.Brewer, CAP twelve years later: How the "rules" have changed.</a></small></p>
 					<aside class="notes">
@@ -224,7 +258,7 @@
 					<h2>Линеаризуемость</h2>
 					<p>Реальный мир с сетевыми задержками:</p>
 					<img src="images/consistency_real.svg" class="plain" height="300px"/><br/>
-					<ul>
+					<ul class="fragment">
 						<li>read a, write b, read b</li>
 						<li>read a, read a, write b</li>
 						<li class="fragment highlight-red">read a, read b, write b</li>
@@ -248,8 +282,8 @@
 					</p>
 					<p class="fragment">Настал netsplit: кластер развалился пополам. Что делать?</p>
 					<ul>
-						<li class="fragment">Большая половинка живет, меньшая лежит</li>
-						<li class="fragment">Работают обе половинки</li>
+						<li class="fragment">Большая живет, меньшая лежит: <span style="color:red;">теряем доступность</span></li>
+						<li class="fragment">Работают обе половинки: <span style="color:red;">теряем целостность</span></li>
 					</ul>
 					<aside class="notes">
 
@@ -257,8 +291,16 @@
 				</section>
 				<section>
 					<h2>CP / AP / AC</h2>
-					<p class="fragment">Проблема с АС:<br/>нужен идеальный мир c идеальной сетью</p>
-					<img class="fragment" src="images/rainbow_unicorn.gif" height="400px"/>
+					<p class="fragment">
+						Проблема с АС:
+						<ul class="fragment">
+							<li>есть высокая доступность</li>
+							<li>и гарантии целостности</li>
+							<li class="fragment highlight-red">пока не поломалась сеть</li>
+						</ul>
+					</p>
+
+					<img class="fragment" src="images/rainbow_unicorn.gif" height="300px"/>
   				<aside class="notes">
 							C+A - легко, когда у вас идеальная сеть в вакууме. С+А на ненадежной сети - невозможно (почему?)
 							т.е. если у вас сеть сделана не из радуги и бабочек, то вы не можете С+А.
@@ -267,7 +309,7 @@
 				</section>
 				<section>
 					<h2>CP / AP / AC</h2>
-					<img class="plain" src="images/cp_vs_ap.svg" height="300px"/>
+					<img class="plain" src="images/cp_vs_ap.svg" height="400px"/>
 					<p class="fragment">В реальном мире можно выбирать CP или AP,<br/> третьего не дано</p>
 				</section>
 				<section>
@@ -281,32 +323,6 @@
 				</section>
 				<section  data-background="images/head-boom.gif" data-background-transition="none">
 				</section>
-				<section>
-					<h2>Jepsen: Call me maybe</h2>
-					<img src="images/aphyr.jpg" height="350px"/>
-					<ul>
-						<li>Фреймворк на Clojure для тестирования р/с</li>
-						<li>Набор готовых тестов для разных систем</li>
-						<li>Серия разгромных статей о найденных проблемах</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Jepsen: чтобы шатать</h2>
-					<p><small>MongoDB, Aerospike, Cassandra, Kafka, MariaDB/Galera, Percona, RabbitMQ,<br/> Redis, Riak, Zookeeper, etcd, Chronos, RethinkDB</small></p>
-					<img height="300px" src="images/jepsen.jpg"/>
-					<ul class="fragment">
-						<li>Имитация сетевых ошибок</li>
-						<li>Генерация случайных последовательностей операций</li>
-						<li>Оценка истроий применения операций с т.з. целостности</li>
-					</ul>
-					<!--p><small>[1]: <a href="http://jepsen.io">Jepsen, Distributed Systems Safety Analysis</a></small></p-->
-				</section>
-				<section data-background="images/bsod1.png" data-background-transition="none"></section>
-				<section data-background="#000000" data-background-transition="none"></section>
-				<section data-background="images/bios2.jpg" data-background-transition="none"></section>
-				<section data-background="#000000" data-background-transition="none"></section>
-				<section data-background="images/bsod3.jpg" data-background-transition="none"></section>
-				<section data-background="#000000" data-background-transition="none"></section>
 				<section>
 					<h2>Live demo</h2>
 					<p>План:</p>
@@ -348,13 +364,49 @@
 				</section>
 				<section><small>show time</small></section>
 				<section>
+					<h2>Jepsen: Call me maybe</h2>
+					<p><img src="images/aphyr.jpg" height="250px"/></p>
+					<p>
+						<ul>
+							<li>Фреймворк на Clojure для тестирования р/с<small>[1]</small></li>
+							<li>Набор готовых тестов для разных систем</li>
+							<li>Серия разгромных статей о найденных проблемах<small>[2]</small></li>
+						</ul>
+					</p>
+					<small>
+						[1]: <a href="http://jepsen.io">Jepsen: Distributed Systems Safety Analysis</a>
+						<br/>
+						[2]: <a href="http://aphyr.com/blog">K.Kingsbury, "Call me maybe" series</a>
+					</small>
+				</section>
+				<section>
+					<h2>Jepsen: чтобы шатать</h2>
+					<p><small>MongoDB, Aerospike, Cassandra, Kafka, MariaDB/Galera, Percona, RabbitMQ,<br/> Redis, Riak, Zookeeper, etcd, Chronos, RethinkDB</small></p>
+					<img height="300px" src="images/jepsen.jpg"/>
+					<ul class="fragment">
+						<li>Имитация сетевых ошибок</li>
+						<li>Генерация случайных последовательностей операций</li>
+						<li>Оценка истроий применения операций с т.з. целостности</li>
+					</ul>
+					<!--p><small>[1]: <a href="http://jepsen.io">Jepsen, Distributed Systems Safety Analysis</a></small></p-->
+				</section>
+				<section data-background="images/bsod1.png" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+				<section data-background="images/bios2.jpg" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+				<section data-background="images/bsod3.jpg" data-background-transition="none"></section>
+				<section data-background="#000000" data-background-transition="none"></section>
+
+				<section>
 					<h2>Jepsen + M/S</h2>
 					<img class="plain" src="images/jepsen_ms.svg" height="350px">
-					<ul>
-						<li>Писать в мастер, читать с мастера/слейва</li>
-						<li>Consistency = ?</li>
-						<li>Availability = ?</li>
-					</ul>
+					<p>
+						<ul>
+							<li>Писать в мастер, читать с мастера/слейва</li>
+							<li>Consistency = ?</li>
+							<li>Availability = ?</li>
+						</ul>
+					</p>
 				</section>
 				<section>
 					<h2>Jepsen 101</h2>
@@ -366,10 +418,10 @@
 					<pre class="fragment"><code data-trim data-noescape>
 user=> (+ 1 2)
 3
-user=> (defn hello [name] (println "hello," name))
+user=> (defn hello [name] (println "hello," name "!"))
 #'user/hello
 user=> (hello "jpoint")
-hello, jpoint
+hello, jpoint !
 nil
 user=>
 					</code></pre>
@@ -398,11 +450,15 @@ user=>
 				<section><small>show time</small></section>
 				<section>
 					<h2>Что-то не так</h2>
-					<p class="fragment">
-					  <img src="images/willis_perfect.jpg" height="400px"/>
-						<img src="images/willis_real.jpg" height="400px"/>
-					  <small>до разработки &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspво время разработки</small>
-				  </p>
+						<table>
+							<tr><td>
+								<img src="images/willis_perfect.jpg" height="400px"/>
+								<div style="text-align:center">написал код</div>
+							</td><td>
+								<img src="images/willis_real.jpg" height="400px"/>
+								<div style="text-align:center">запустил Jepsen</div>
+							</td></tr>
+						</table>
 				</section>
 				<section>
 					<h2>Master/slave fail #2</h2>
@@ -410,22 +466,41 @@ user=>
 				</section>
 				<section>
 					<h2>Master/Slave vs CAP</h2>
-					<p>Consistency + Availability?</p>
+					<table>
+						<thead>
+							<td></td>
+							<td>async</td>
+							<td>sync</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Consistency</td>
+								<td><span style="color: red;">неа</span></td>
+								<td><span style="color: green;">да</span><span style="color: yellow;">*</span></td>
+							</tr>
+							<tr>
+								<td>Avaliability</td>
+								<td><span style="color: red;">неа</span></td>
+								<td><span style="color: red;">неа</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<br/>
 					<ul>
-						<li>асинхронная репликация: С = <span style="color: red;">неа</span>, A = <span style="color: green;">хз</span></li>
-						<li>синхронная репликация: C = <span style="color: green;">да</span><span style="color: yellow;">*</span>, A = <span style="color: green;">хз</span></li>
+						<li>Availability: слейв не умеет писать, только читать!</li>
+						<li>Consistency: replication lag</li>
 					</ul>
 				</section>
 				<section>
 					<h2>Don't call me CAP</h2>
-					<p>Теорема с очень строгими определениями:</p>
+					<p>Теорема с очень строгими определениями<small>[1]</small>:</p>
 					<ul>
 						<li class="fragment">consistency: а что с транзакциями?</li>
 						<li class="fragment">availability: latency? дохлые диски? reboot?</li>
 						<li class="fragment">partitions: потеря пакетов?</li>
 					</ul>
-					<br/><br/><br/><br/><br/><br/>
-					<p class="fragment"><small>[1]: <a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html">M.Kleppmann: Please stop calling databases CP or AP</a></small></p>
+					<br/><br/><br/><br/>
+					<p><small>[1]: <a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html">M.Kleppmann: Please stop calling databases CP or AP</a></small></p>
 				</section>
 				<section>
 					<h2>Налайвкодили, а жить-то как?</h2>
@@ -433,7 +508,7 @@ user=>
 					<p>Крафтовые распределенные системы:</p>
 					<ul>
 						<li>Содержат кривой-косой алгоритм консенсуса</li>
-						<li>Их никто не тестировал на целостность в бою</li>
+						<li>Никто не тестировал на целостность в экстремальных случаях</li>
 					</ul>
 				</section>
 				<section>
@@ -444,45 +519,6 @@ user=>
 						<li><span style="color: green;">Minority fail</span>: OK</li>
 						<li><span style="color: red;">Majority fail</span>: потеря доступности, сохранение целостности</li>
 					</ul>
-				</section>
-				<section>
-					<h2>Paxos</h2>
-					Распределенный конечный автомат с характером:
-					<ul class="fragment">
-						<li>Сложный для понимания</li>
-						<li>Сложный для практической реализации</li>
-					</ul>
-					<p><img src="images/wow.gif" height="250px" class="fragment"/></p>
-					<p class="fragment"><small>[1]: <a href="http://blog.aetherstore.com/2013/05/paxos-by-example/">A.Macdonald: Paxos by example</a></small></p>
-				</section>
-				<section>
-					<h2>Raft</h2>
-					<img src="images/raft.png" height="200px"/>
-					<ul>
-						<li class="fragment">Распределенный конечный автомат</li>
-						<li class="fragment">
-							Журнал операций
-							<ul>
-								<li class="fragment">соглашение о порядке операций в журнале</li>
-								<li class="fragment">КА приходит в одинаковое состояние</li>
-							</ul>
-						</li>
-					</ul>
-					<br/><br/><p class="fragment"><small>[1]: <a href="https://raft.github.io/">D.Ongaro: The Raft consensus algorithm</a></small></p>
-				</section>
-				<section>
-					<img src="images/raft_impls.png" height="650px"/>
-				</section>
-				<section>
-					<h2>Консенсус и реальная жизнь</h2>
-					<img src="images/mongodb.svg" width="300px" class="plain"/>
-					<img src="images/cassandra.png" width="300px" class="plain"/>
-					<img src="images/ceph.png" width="300px" class="plain"/>
-					<img src="images/neo4j.png" width="300px" class="plain"/>
-					<img src="images/consul.png" width="300px" class="plain"/>
-					<img src="images/etcd.png" width="300px" class="plain"/>
-					<img src="images/zookeeper.png" width="300px" class="plain"/>
-					<img src="images/aerospike.png" width="300px" class="plain"/>
 				</section>
 				<section>
 					<h2>Live demo strikes back</h2>
@@ -499,7 +535,7 @@ user=>
 					</ul>
 				</section>
 				<section><small>show time</small></section>
-				<section>
+				<!--section>
 					<h2>Кворум на коленке развалился</h2>
 					<p><img src="images/sad_boy.gif"/></p>
 					<ol>
@@ -508,7 +544,7 @@ user=>
 						<li class="fragment">Неправильно пишем и читаем</li>
 						<li class="fragment">Пишем на неправильном языке</li>
 					</ol>
-				</section>
+				</section-->
 				<section>
 					<pre><code data-trim data-noescape>
 def read =
@@ -522,10 +558,76 @@ def write(data: String) = {
     .map(buildResponse)
 }
 				</code></pre>
+				<img src="images/quorum_fail.svg" class="plain fragment" height="350px"/>
 				</section>
 				<section>
-					<img src="images/happy_cat.jpg" height="500px"/>
+					<img src="images/quorum_fail.svg" class="plain" height="300px"/>
+					<img src="images/dora.gif" class="plain" height="350px" align="left"/>
+						Помоги Даше угадать результат чтения:
+						<ol>
+							<li>A, линеаризуемо</li>
+							<li>B, линеаризуемо</li>
+							<li>A, не линеаризуемо</li>
+							<li class="fragment highlight-red">B, не линеаризуемо</li>
+						</ol>
 				</section>
+				<section>
+					<h2>Paxos & Raft</h2>
+					<img src="images/fsm.svg" class="plain fragment" height="250px"/><br/>
+					<!--span class="fragment">Распределенный конечный автомат для журнала операций</span-->
+					<ul>
+						<li class="fragment">соглашение о порядке операций:
+							<ul>
+								<li>Выбор мастера</li>
+								<li>применение операции</li>
+								<li>репликация журнала</li>
+							</ul>
+						</li>
+						<li class="fragment">одинаковый журнал &rarr; одинаковое состояние</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Paxos vs Raft</h2>
+					<p>Paxos сложный:</p>
+					<ul class="fragment">
+						<li>оригинальное описание: формальное и теоретическое</li>
+						<li>монолитная система, не разбита на фазы</li>
+						<li>для реализации надо многое додумать</li>
+					</ul>
+					<p><img src="images/paxos-pingpong.png" height="300px" class="fragment"/></p>
+					<p><small>[1]: <a href="http://paxos.systems">D. Altınbüken: Paxos made moderately complex</a></small></p>
+				</section>
+				<section>
+					<h2>Raft<small>&nbsp;[1]</small></h2>
+					<p><img src="images/raft_logo.png" height="200px"/></p>
+					<p>Учтены проблемы Paxos:</p>
+					<ul>
+						<li>Четкое разделение фаз и компонентов</li>
+						<li>Явно выделенный лидер</li>
+						<li>Практические аспекты реализации</li>
+					</ul>
+					<br/><p><small>[1]: <a href="https://raft.github.io/">D.Ongaro: The Raft consensus algorithm</a></small></p>
+				</section>
+				<section>
+					<h2>Raft @ JVM</h2>
+					<img src="images/raft-jvm.png" height="500px" class="plain"/>
+				</section>
+				<section>
+					<h2>Консенсус и реальная жизнь</h2>
+					<img src="images/mongodb.svg" width="300px" class="plain"/>
+					<img src="images/cassandra.png" width="300px" class="plain"/>
+					<img src="images/ceph.png" width="300px" class="plain"/>
+					<img src="images/neo4j.png" width="300px" class="plain"/>
+					<img src="images/consul.png" width="300px" class="plain"/>
+					<!--img src="images/etcd.png" width="300px" class="plain"/-->
+					<img src="images/zookeeper.png" width="300px" class="plain"/>
+					<img src="images/aerospike.png" width="300px" class="plain"/>
+					<img src="images/influxdb.png" width="300px" class="plain"/>
+					<img src="images/rethink.png" width="300px" class="plain"/>
+				</section>
+				<!--section>
+					<img src="images/happy_cat.jpg" height="500px"/>
+				</section-->
 				<section>
 					<h2>Cheat sheet</h2>
 					<img src="images/distsys_cheatsheet.jpg"/>
@@ -544,12 +646,27 @@ def write(data: String) = {
 				</section>
 				<section>
 					<h2>Выводы</h2>
-					<img src="images/easy_way.png" height="350px"/>
+					<p><img src="images/easy_way.png" height="350px"/></p>
 					<ul>
 						<li class="fragment">Прострелить ногу <span class="fragment highlight-red"очень</span> просто</li>
 						<li class="fragment">Прежде чем изобретать велосипед, учите матчасть</li>
 						<li class="fragment">Почти все проблемы уже решены</li>
 					</ul>
+				</section>
+				<section>
+					<h2>Материалы</h2>
+					<table>
+						<tr>
+							<td>
+								<img src="images/aphyr-screenshot.png" height="400px"/><br/>
+								<p style="text-align: center;"><small>aphyr.com/blog</small></p>
+							</td>
+							<td>
+								<img src="images/kleppmann-cover.png" height="400px"/>
+								<p style="text-align:center;"><small>M.Kleppmann: Designing <br/>data-intensive applications</small></p>
+							</td>
+						</tr>
+					</table>
 				</section>
 				<section data-background="images/head-boom.gif" data-background-transition="none">
 					<h1>Вопросы?</h1>
@@ -578,6 +695,8 @@ def write(data: String) = {
 				slideNumber: true,
 				minScale: 0.1,
 				maxScale: 2.0,
+				width: 1200,
+				height: 700,
 				// Optional reveal.js plugins
 				dependencies: [
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
