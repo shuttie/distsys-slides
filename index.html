@@ -232,12 +232,18 @@
 				</section>
 				<section>
 					<h2>Целостность</h2>
-					<p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p>
+					<p class="fragment"><img src="images/consistency.jpg" height="450px"/><small>[1]</small></p>
+					<small>[1]: <a href="http://arxiv.org/abs/1512.00168">P.Viotti: Consistency in Non-Transactional Distributed Storage Systems</a></small>
+				</section>
+				<section>
+					<h2>CA<span style="color:red;">P</span>: Consistency</h2>
+					<!--p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p-->
 					<ul>
 						<li class="fragment">Если операция B началась после окончания операции А</li>
 						<li class="fragment">тогда В должна увидеть систему на момент окончания А</li>
 						<li class="fragment">или в более новом состоянии.</li>
 					</ul>
+					<br/><br/>
 					<p class="fragment">Существует непротиворечивая история последовательных операций.</p>
 					<aside class="notes">
 						операция не размазана во времени
@@ -296,7 +302,7 @@
 						<ul class="fragment">
 							<li>есть высокая доступность</li>
 							<li>и гарантии целостности</li>
-							<li class="fragment highlight-red">пока не поломалась сеть</li>
+							<li class="fragment">пока не поломалась сеть</li>
 						</ul>
 					</p>
 
@@ -487,14 +493,15 @@ user=>
 					</table>
 					<br/>
 					<ul>
-						<li>Availability: слейв не умеет писать, только читать!</li>
-						<li>Consistency: replication lag</li>
+						<li class="fragment">Consistency: replication lag</li>
+						<li class="fragment">Availability: слейв не умеет писать, только читать!</li>
 					</ul>
 				</section>
 				<section>
 					<h2>Don't call me CAP</h2>
 					<p>Теорема с очень строгими определениями<small>[1]</small>:</p>
 					<ul>
+						<li class="fragment">описывает 1 регистр</li>
 						<li class="fragment">consistency: а что с транзакциями?</li>
 						<li class="fragment">availability: latency? дохлые диски? reboot?</li>
 						<li class="fragment">partitions: потеря пакетов?</li>
@@ -630,7 +637,7 @@ def write(data: String) = {
 				</section-->
 				<section>
 					<h2>Cheat sheet</h2>
-					<img src="images/distsys_cheatsheet.jpg"/>
+					<img src="images/distsys_cheatsheet.jpg"/><small>[1]</small>
 					<p><small>[1]: <a href="http://book.mixu.net/distsys/single-page.html">M. Takada, Distributed systems for fun and profit.</a></small></p>
 					<!-- http://book.mixu.net/distsys/single-page.html -->
 				</section>
