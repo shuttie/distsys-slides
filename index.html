@@ -45,7 +45,7 @@
 					</p>
 					<p><small>&copy; jpoint 2016</small></p>
 				</section>
-				<section>
+				<!--section>
 					<h2>Обо мне</h2>
 					<img src="images/grebennikov.jpg"/>
 					<p>
@@ -54,16 +54,15 @@
 				  </p>
 					<p>
 					  <img class="plain" height="60px" src="images/sociohub.png"/>
-						<!--img class="plain" height="60px" src="images/dsr.png"/-->
 					  <img class="plain" height="60px" src="images/findify.png"/>
 					</p>
-				</section>
-				<section>
+				</section-->
+				<!--section>
 					<h2>Intro</h2>
 					<img src="images/lamport.jpg" class="plain"/>
 					<blockquote>A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable.</blockquote>
 					<p><small>Leslie Lamport, 1987</small></p>
-				</section>
+				</section-->
 				<section>
 					<h2>Intro</h2>
 					<p>
@@ -237,7 +236,8 @@
 				</section>
 				<section>
 					<h2>CA<span style="color:red;">P</span>: Consistency</h2>
-					<!--p><span class="fragment">A<span style="color: red;">C</span>ID?</span> <span class="fragment">Линеаризуемость!</span></p-->
+					<!--p><span class="fragment">A<span style="color: red;">C</span>ID?</span> </p-->
+					<span class="fragment">Линеаризуемость:</span>
 					<ul>
 						<li class="fragment">Если операция B началась после окончания операции А</li>
 						<li class="fragment">тогда В должна увидеть систему на момент окончания А</li>
@@ -675,6 +675,15 @@ def write(data: String) = {
 						</tr>
 					</table>
 				</section>
+				<section>
+					<h2>Материалы</h2>
+					<ul>
+						<li>Слайды: <a href="http://dfdx.me/talks/distsys">http://dfdx.me/talks/distsys</a></li>
+						<li>Код: <a href="https://github.com/shuttie/distdb">https://github.com/shuttie/distdb</a></li>
+					</ul>
+					<p><img src="images/github1.png" class="plain" height="200px"/></p>
+
+				</section>
 				<section data-background="images/head-boom.gif" data-background-transition="none">
 					<h1>Вопросы?</h1>
 				</section>
@@ -716,6 +725,33 @@ def write(data: String) = {
 			});
 
 		</script>
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+		    (function (d, w, c) {
+		        (w[c] = w[c] || []).push(function() {
+		            try {
+		                w.yaCounter36998045 = new Ya.Metrika({
+		                    id:36998045,
+		                    clickmap:true,
+		                    trackLinks:true,
+		                    accurateTrackBounce:true
+		                });
+		            } catch(e) { }
+		        });
 
+		        var n = d.getElementsByTagName("script")[0],
+		            s = d.createElement("script"),
+		            f = function () { n.parentNode.insertBefore(s, n); };
+		        s.type = "text/javascript";
+		        s.async = true;
+		        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+		        if (w.opera == "[object Opera]") {
+		            d.addEventListener("DOMContentLoaded", f, false);
+		        } else { f(); }
+		    })(document, window, "yandex_metrika_callbacks");
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/36998045" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
 	</body>
 </html>
